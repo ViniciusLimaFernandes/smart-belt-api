@@ -15,5 +15,8 @@ WORKDIR /opt/app
 # cp build/libs/*.jar /opt/app/app.jar
 COPY ${JAR_FILE} app.jar
 
+# Expose port 8080
+EXPOSE 8080
+
 # java -jar /opt/app/app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
