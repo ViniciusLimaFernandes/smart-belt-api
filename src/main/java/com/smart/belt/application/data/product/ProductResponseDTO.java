@@ -12,7 +12,6 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class ProductResponseDTO {
 
     @JsonProperty("userId")
-    private UUID userID;
+    private String userID;
 
     @JsonProperty("productType")
     private ProductType productType;

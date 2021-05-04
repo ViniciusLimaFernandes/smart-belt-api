@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Table(name = "Product")
+@Table(name = "products")
 public class Product implements Serializable {
 
     @Id
@@ -24,7 +24,7 @@ public class Product implements Serializable {
     private String productType;
 
     @Column(name = "quantity", nullable = false)
-    private Long quantity;
+    private Integer quantity;
 
     @Column(name = "condition", nullable = false)
     private String productCondition;

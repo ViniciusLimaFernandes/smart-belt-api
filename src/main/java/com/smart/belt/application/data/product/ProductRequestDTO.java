@@ -11,8 +11,6 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +18,7 @@ import java.util.UUID;
 public class ProductRequestDTO {
 
     @JsonProperty("user")
-    private UUID user;
+    private String user;
 
     @JsonProperty("productType")
     private ProductType productType;

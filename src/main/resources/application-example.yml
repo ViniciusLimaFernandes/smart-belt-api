@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://ip/database_name
+    username: user_name
+    password: password
