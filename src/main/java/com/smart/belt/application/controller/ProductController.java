@@ -1,47 +1,42 @@
 package com.smart.belt.application.controller;
 
-import com.smart.belt.application.data.ProductVO;
-import com.smart.belt.application.repository.ProductRepository;
-import com.smart.belt.application.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.smart.belt.application.data.product.ProductRequestDTO;
+import com.smart.belt.application.data.product.ProductResponseDTO;
+import com.smart.belt.application.entity.Product;
+import com.smart.belt.application.service.interfaces.ProductService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/product")
-public class HelloWorldController {
+public class ProductController {
 
-    @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
     ProductService productService;
 
+    public ProductController(final ProductService productService) {
+        this.productService = productService;
+    }
+
     @GetMapping(value = "/list", produces = "application/json")
-    public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") final int page,
-                                     @RequestParam(value = "limit", defaultValue = "12") final int limit,
-                                     @RequestParam(value = "direction", defaultValue = "asc") final String direction) {
+    public ResponseEntity<Page<ProductResponseDTO>> findAll(final Pageable pageable) {
+        //params: page, size e sort
+        final Page<Product> productPage = productService.findAll(pageable);
 
-        final String propertyReference = "registerDate";
+        final Page<ProductResponseDTO> response = productPage.map(ProductResponseDTO::convertToDTO);
 
-        final Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
-
-        final Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, propertyReference));
-
-        final Page<ProductVO> products = productService.findAll(pageable);
-
-        return ResponseEntity.ok(products);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping(value = "/register", consumes = "application/json")
-    public ResponseEntity<?> insertProduct(@RequestBody final ProductVO productVO) {
-        productService.create(productVO);
+    public ResponseEntity<ProductResponseDTO> insertProduct(@RequestBody final ProductRequestDTO productRequestDTO) {
+        final Product product = productService.create(ProductRequestDTO.convertToEntity(productRequestDTO));
 
-        return ResponseEntity.ok("Product Created!");
+        final ProductResponseDTO response = ProductResponseDTO.convertToDTO(product);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }
