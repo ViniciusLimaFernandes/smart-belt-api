@@ -1,15 +1,18 @@
 package com.smart.belt.application.service;
 
-import com.smart.belt.application.entity.Product;
+import com.smart.belt.application.data.product.TotalProductsDTO;
 import com.smart.belt.application.exception.ResourceNotFoundException;
-import com.smart.belt.application.repository.ProductRepository;
-import com.smart.belt.application.repository.UserRepository;
 import com.smart.belt.application.service.interfaces.ProductService;
+import com.smart.belt.domain.entity.Product;
+import com.smart.belt.domain.repository.ProductRepository;
+import com.smart.belt.domain.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+import java.util.List;
+
+@Component
 public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
@@ -37,4 +40,13 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @Override
+    public List<Product> findByUserId(final String userID) {
+        return productRepository.findByUserId(userID);
+    }
+
+    @Override
+    public List<TotalProductsDTO> total(final String userID) {
+        return productRepository.total(userID);
+    }
 }
