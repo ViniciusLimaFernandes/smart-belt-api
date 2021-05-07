@@ -1,15 +1,17 @@
 package com.smart.belt.application.data.product;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.smart.belt.application.entity.Product;
-import com.smart.belt.application.enumeration.ProductCondition;
-import com.smart.belt.application.enumeration.ProductType;
+import com.smart.belt.domain.entity.Product;
+import com.smart.belt.domain.enumeration.ProductCondition;
+import com.smart.belt.domain.enumeration.ProductType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+
+import javax.validation.constraints.Min;
 
 @Getter
 @Setter
@@ -23,6 +25,7 @@ public class ProductRequestDTO {
     @JsonProperty("productType")
     private ProductType productType;
 
+    @Min(0L)
     @JsonProperty("quantity")
     private Long quantity;
 

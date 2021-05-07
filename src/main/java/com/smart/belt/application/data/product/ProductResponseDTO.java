@@ -2,9 +2,9 @@ package com.smart.belt.application.data.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.smart.belt.application.entity.Product;
-import com.smart.belt.application.enumeration.ProductCondition;
-import com.smart.belt.application.enumeration.ProductType;
+import com.smart.belt.domain.entity.Product;
+import com.smart.belt.domain.enumeration.ProductCondition;
+import com.smart.belt.domain.enumeration.ProductType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

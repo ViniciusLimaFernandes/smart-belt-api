@@ -1,7 +1,7 @@
 package com.smart.belt.application.data.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.smart.belt.application.entity.User;
+import com.smart.belt.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
