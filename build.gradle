@@ -1,8 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.4.1'
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
+
+apply plugin: 'com.google.cloud.tools.appengine'
 
 group = 'com.smart'
 version = '0.0.1-SNAPSHOT'
@@ -19,13 +31,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'com.h2database:h2:1.4.200'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.4.4'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-core', version: '1.2.8.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.4.1'
     implementation 'org.springframework:spring-jdbc:5.3.3'
     implementation 'org.modelmapper:modelmapper:2.3.8'
     implementation 'mysql:mysql-connector-java:8.0.22'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-core', version: '1.2.8.RELEASE'
 
+    testImplementation 'com.h2database:h2:1.4.200'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
