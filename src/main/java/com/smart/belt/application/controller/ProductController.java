@@ -26,6 +26,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @CrossOrigin
     @Operation(summary = "List all products based on the given parameters")
     @GetMapping(value = "/list", produces = "application/json")
     public ResponseEntity<Page<ProductResponseDTO>> findAll(final Pageable pageable) {
@@ -37,6 +38,7 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @Operation(summary = "Register a new product for an user")
     @PostMapping(value = "/register", consumes = "application/json")
     public ResponseEntity<ProductResponseDTO> insertProduct(@RequestBody final ProductRequestDTO productRequestDTO) {
@@ -47,6 +49,7 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @Operation(summary = "List all products by user")
     @GetMapping(value = "/find")
     public ResponseEntity<List<Product>> productsByUser(@RequestParam("userID") final String userID) {
@@ -55,6 +58,7 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @Operation(summary = "Products summary by user")
     @GetMapping(value = "/summary")
     public ResponseEntity<List<TotalProductsDTO>> totalProductsByUserAndCondition(@RequestParam("userID") final String userID) {

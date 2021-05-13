@@ -23,6 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin
     @Operation(summary = "Create a new user")
     @PostMapping(value = "/create", consumes = "application/json")
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody final UserRequestDTO userRequestDTO) {
@@ -31,6 +32,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @Operation(summary = "List all users")
     @GetMapping(value = "/list", produces = "application/json")
     public ResponseEntity<Page<UserResponseDTO>> findAll(final Pageable pageable) {
